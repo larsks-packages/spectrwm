@@ -1,6 +1,6 @@
 Name:       spectrwm
 Version:    3.0.0
-Release:    1%{?dist}
+Release:    2%{?dist}
 Summary:    Minimalist tiling window manager written in C
 License:    ISC
 URL:        https://opensource.conformal.com/wiki/%{name}
@@ -22,6 +22,9 @@ Requires:   dmenu
 Patch0001: 0001-right-link-and-add-feedback-heading.patch
 Patch0002: 0002-retire-unmaintained-man-pages-harder.patch
 Patch0003: 0003-Prepend-SWM_LIB-to-LD_PRELOAD-instead-of-clobbering.patch
+
+# LKS: This should be picked up automatically.
+Provides: libswmhack.so.0.0()(64bit)
 
 %description
 Spectrwm is a small dynamic tiling window manager for X11.
