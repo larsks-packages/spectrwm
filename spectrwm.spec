@@ -1,11 +1,11 @@
 Name:       spectrwm
-Version:    2.7.2
-Release:    2%{?dist}
+Version:    3.0.0
+Release:    1%{?dist}
 Summary:    Minimalist tiling window manager written in C
 License:    ISC
 URL:        https://opensource.conformal.com/wiki/%{name}
 Source0:    https://opensource.conformal.com/snapshots/%{name}/%{name}-%{version}.tgz
-Source1:    Makefile25    
+Source1:    Makefile25
 BuildRequires:  xcb-util-devel
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  xcb-util-wm-devel
@@ -14,9 +14,14 @@ BuildRequires:  libXcursor-devel
 BuildRequires:  libXft-devel
 BuildRequires:  libXt-devel
 BuildRequires:  libXrandr-devel
+BUildRequires:  git
 Requires:   xterm
 Requires:   xlockmore
 Requires:   dmenu
+
+Patch0001: 0001-right-link-and-add-feedback-heading.patch
+Patch0002: 0002-retire-unmaintained-man-pages-harder.patch
+Patch0003: 0003-Prepend-SWM_LIB-to-LD_PRELOAD-instead-of-clobbering.patch
 
 %description
 Spectrwm is a small dynamic tiling window manager for X11.
@@ -27,12 +32,8 @@ language to do any configuration. It was written by hackers
 for hackers and it strives to be small, compact and fast.
 
 %prep
-%setup -q
-iconv -f iso8859-1 -t utf-8 %{name}_es.1 > %{name}_es.1.conv
-iconv -f iso8859-1 -t utf-8 %{name}_pt.1 > %{name}_pt.1.conv
-mv -f %{name}_es.1.conv %{name}_es.1
-mv -f %{name}_pt.1.conv %{name}_pt.1
-cp %{SOURCE1} linux/Makefile
+%autosetup -S git
+#cp %{SOURCE1} linux/Makefile
 # Generate license files as per
 # https://opensource.conformal.com/wiki/spectrwm#License
 head -n14 version.h | tail -n13 | sed -e 's/ \* //g' -e 's/\*//g' > LICENSE
@@ -51,16 +52,11 @@ install -m 644 linux/%{name}.desktop %{buildroot}%{_datadir}/xsessions
 install baraction.sh %{buildroot}%{_datadir}/%{name}
 install initscreen.sh %{buildroot}%{_datadir}/%{name}
 install screenshot.sh %{buildroot}%{_datadir}/%{name}
-for l in es it pt ru ; do
-    mkdir -p %{buildroot}%{_mandir}/$l/man1
-    mv %{buildroot}%{_mandir}/man1/%{name}_$l.1 %{buildroot}%{_mandir}/$l/man1/%{name}.1
-done
-%find_lang %{name} --with-man
 
 %post -p /sbin/ldconfig
 %postun -p /sbin/ldconfig
 
-%files -f %{name}.lang
+%files
 %doc LICENSE LICENSE-LD_PRELOAD LICENSE-dwm README.md
 %config(noreplace) %{_sysconfdir}/%{name}.conf
 %{_bindir}/%{name}

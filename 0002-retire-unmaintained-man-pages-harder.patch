@@ -1,0 +1,81 @@
+From 86268c60a514bdd855b2c36137b0e0501c3d3321 Mon Sep 17 00:00:00 2001
+From: Marco Peereboom <marco@peereboom.us>
+Date: Tue, 3 May 2016 14:51:17 -0500
+Subject: [PATCH 2/3] retire unmaintained man pages harder
+
+---
+ freebsd/Makefile |  4 ----
+ linux/Makefile   | 12 ------------
+ osx/Makefile     |  4 ----
+ 3 files changed, 20 deletions(-)
+
+diff --git a/freebsd/Makefile b/freebsd/Makefile
+index 1cc3143..4887ddc 100644
+--- a/freebsd/Makefile
++++ b/freebsd/Makefile
+@@ -47,10 +47,6 @@ install: all
+ 	install -m 755 spectrwm $(SWM_BINDIR)
+ 	install -m 755 libswmhack.so.$(LVERS) $(SWM_LIBDIR)
+ 	install -m 644 ../spectrwm.1 $(SWM_MANDIR)/man1/spectrwm.1
+-	install -m 644 ../spectrwm_es.1 $(SWM_MANDIR)/man1/spectrwm_es.1
+-	install -m 644 ../spectrwm_it.1 $(SWM_MANDIR)/man1/spectrwm_it.1
+-	install -m 644 ../spectrwm_pt.1 $(SWM_MANDIR)/man1/spectrwm_pt.1
+-	install -m 644 ../spectrwm_ru.1 $(SWM_MANDIR)/man1/spectrwm_ru.1
+ 	ln -sf spectrwm $(SWM_BINDIR)/scrotwm
+ 
+ clean:
+diff --git a/linux/Makefile b/linux/Makefile
+index e219936..0a830e9 100644
+--- a/linux/Makefile
++++ b/linux/Makefile
+@@ -41,10 +41,6 @@ install: all
+ 	install -m 755 -d $(DESTDIR)$(BINDIR)
+ 	install -m 755 -d $(DESTDIR)$(LIBDIR)
+ 	install -m 755 -d $(DESTDIR)$(MANDIR)/man1
+-	install -m 755 -d $(DESTDIR)$(MANDIR)/es/man1
+-	install -m 755 -d $(DESTDIR)$(MANDIR)/it/man1
+-	install -m 755 -d $(DESTDIR)$(MANDIR)/pt/man1
+-	install -m 755 -d $(DESTDIR)$(MANDIR)/ru/man1
+ 	install -m 755 -d $(DESTDIR)$(XSESSIONSDIR)
+ 	install -m 755 spectrwm                    $(DESTDIR)$(BINDIR)
+ 	ln -sf spectrwm                            $(DESTDIR)$(BINDIR)/scrotwm
+@@ -52,10 +48,6 @@ install: all
+ 	ln -sf libswmhack.so.$(LIBVERSION)         $(DESTDIR)$(LIBDIR)/libswmhack.so.$(LIBMAJORVERSION)
+ 	ln -sf libswmhack.so.$(LIBVERSION)         $(DESTDIR)$(LIBDIR)/libswmhack.so
+ 	install -m 644 ../spectrwm.1               $(DESTDIR)$(MANDIR)/man1/spectrwm.1
+-	install -m 644 ../spectrwm_es.1            $(DESTDIR)$(MANDIR)/es/man1/spectrwm.1
+-	install -m 644 ../spectrwm_it.1            $(DESTDIR)$(MANDIR)/it/man1/spectrwm.1
+-	install -m 644 ../spectrwm_pt.1            $(DESTDIR)$(MANDIR)/pt/man1/spectrwm.1
+-	install -m 644 ../spectrwm_ru.1            $(DESTDIR)$(MANDIR)/ru/man1/spectrwm.1
+ 	install -m 644 spectrwm.desktop            $(DESTDIR)$(XSESSIONSDIR)
+ 
+ uninstall:
+@@ -65,10 +57,6 @@ uninstall:
+ 	rm -f $(DESTDIR)$(LIBDIR)/libswmhack.so.$(LIBMAJORVERSION)
+ 	rm -f $(DESTDIR)$(LIBDIR)/libswmhack.so
+ 	rm -f $(DESTDIR)$(MANDIR)/man1/spectrwm.1
+-	rm -f $(DESTDIR)$(MANDIR)/es/man1/spectrwm.1
+-	rm -f $(DESTDIR)$(MANDIR)/it/man1/spectrwm.1
+-	rm -f $(DESTDIR)$(MANDIR)/pt/man1/spectrwm.1
+-	rm -f $(DESTDIR)$(MANDIR)/ru/man1/spectrwm.1
+ 	rm -f $(DESTDIR)$(XSESSIONSDIR)/spectrwm.desktop
+ 
+ .PHONY: all clean install uninstall
+diff --git a/osx/Makefile b/osx/Makefile
+index f52fd9c..898a1ac 100644
+--- a/osx/Makefile
++++ b/osx/Makefile
+@@ -59,10 +59,6 @@ install: all
+ 	install -m 755 spectrwm $(DESTDIR)$(BINDIR)
+ 	install -m 755 libswmhack.so.$(LVERS) $(DESTDIR)$(LIBDIR)
+ 	install -m 644 ../spectrwm.1 $(DESTDIR)$(MANDIR)/man1/spectrwm.1
+-	install -m 644 ../spectrwm_es.1 $(DESTDIR)$(MANDIR)/man1/spectrwm_es.1
+-	install -m 644 ../spectrwm_it.1 $(DESTDIR)$(MANDIR)/man1/spectrwm_it.1
+-	install -m 644 ../spectrwm_pt.1 $(DESTDIR)$(MANDIR)/man1/spectrwm_pt.1
+-	install -m 644 ../spectrwm_ru.1 $(DESTDIR)$(MANDIR)/man1/spectrwm_ru.1
+ 	ln -sf spectrwm $(DESTDIR)$(BINDIR)/scrotwm
+ 	ln -sf libswmhack.so.0.0 $(DESTDIR)$(LIBDIR)/libswmhack.so.0
+ 	ln -sf libswmhack.so.0.0 $(DESTDIR)$(LIBDIR)/libswmhack.so
+-- 
+2.8.1
+

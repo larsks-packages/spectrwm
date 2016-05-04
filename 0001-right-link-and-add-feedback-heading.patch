@@ -1,0 +1,31 @@
+From bb0d4973d38f4e9f2f20f80d5b5440641b1a0802 Mon Sep 17 00:00:00 2001
+From: Marco Peereboom <marco@peereboom.us>
+Date: Mon, 2 May 2016 17:43:45 -0500
+Subject: [PATCH 1/3] right link and add feedback heading
+
+---
+ README.md | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/README.md b/README.md
+index 626c7d1..d1bc4f5 100644
+--- a/README.md
++++ b/README.md
+@@ -25,6 +25,7 @@ brand new window manager was whooped up to serve no other purpose than to obey
+ its masters. It is released under the ISC license. Patches can be accepted
+ provided they are ISC licensed as well.
+ 
++## Feedback and questions
+ You can and come chat with us on IRC. We use [OFTC](https://www.oftc.net)
+ channel #spectrwm.
+ 
+@@ -73,5 +74,4 @@ spectrwm is ISC licensed unless otherwise specified in individual files.
+ (https://github.com/conformal/spectrwm/wiki/Scrotwm4.png)
+ 
+ ![mplayer, resized and moved]
+-(https://github.com/conformal/spectrwm/wiki/Scrotwm1.png)
+-
++(https://github.com/conformal/spectrwm/wiki/Scrotwm5.png)
+-- 
+2.8.1
+
