@@ -1,7 +1,7 @@
 From 86268c60a514bdd855b2c36137b0e0501c3d3321 Mon Sep 17 00:00:00 2001
 From: Marco Peereboom <marco@peereboom.us>
 Date: Tue, 3 May 2016 14:51:17 -0500
-Subject: [PATCH 2/3] retire unmaintained man pages harder
+Subject: [PATCH 2/4] retire unmaintained man pages harder
 
 ---
  freebsd/Makefile |  4 ----

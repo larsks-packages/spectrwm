@@ -1,7 +1,7 @@
 From 7e685eaa4c8a2483a9d0152f47fdb1b70d6ccfec Mon Sep 17 00:00:00 2001
 From: Reginald Kennedy <rk@rejii.com>
 Date: Wed, 4 May 2016 22:10:14 +0800
-Subject: [PATCH 3/3] Prepend SWM_LIB to LD_PRELOAD instead of clobbering.
+Subject: [PATCH 3/4] Prepend SWM_LIB to LD_PRELOAD instead of clobbering.
 
 closes #124
 ---

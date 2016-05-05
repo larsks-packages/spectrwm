@@ -1,11 +1,15 @@
 Name:       spectrwm
-Version:    3.0.0
-Release:    2%{?dist}
+Version:    3.0.1
+
+# build github tag name from package name and version
+%global tag_base	%{lua: print(string.upper(rpm.expand("%name")))}
+%global tag_version	%{lua: print((string.gsub(rpm.expand("%version"), "%.", "_")))}
+
+Release:    1%{?dist}
 Summary:    Minimalist tiling window manager written in C
 License:    ISC
-URL:        https://opensource.conformal.com/wiki/%{name}
-Source0:    https://opensource.conformal.com/snapshots/%{name}/%{name}-%{version}.tgz
-Source1:    Makefile25
+URL:        https://github.com/conformal/%{name}
+Source0:    https://github.com/conformal/%{name}/archive/%{tag_base}_%{tag_version}.tar.gz
 BuildRequires:  xcb-util-devel
 BuildRequires:  xcb-util-keysyms-devel
 BuildRequires:  xcb-util-wm-devel
@@ -19,11 +23,7 @@ Requires:   xterm
 Requires:   xlockmore
 Requires:   dmenu
 
-Patch0001: 0001-right-link-and-add-feedback-heading.patch
-Patch0002: 0002-retire-unmaintained-man-pages-harder.patch
-Patch0003: 0003-Prepend-SWM_LIB-to-LD_PRELOAD-instead-of-clobbering.patch
-
-# LKS: This should be picked up automatically.
+# LKS: This should be picked up automatically (but it's not).
 Provides: libswmhack.so.0.0()(64bit)
 
 %description
@@ -35,8 +35,7 @@ language to do any configuration. It was written by hackers
 for hackers and it strives to be small, compact and fast.
 
 %prep
-%autosetup -S git
-#cp %{SOURCE1} linux/Makefile
+%autosetup -S git -n spectrwm-%{tag_base}_%{tag_version}
 # Generate license files as per
 # https://opensource.conformal.com/wiki/spectrwm#License
 head -n14 version.h | tail -n13 | sed -e 's/ \* //g' -e 's/\*//g' > LICENSE

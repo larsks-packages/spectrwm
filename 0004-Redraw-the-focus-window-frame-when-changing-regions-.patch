@@ -1,0 +1,29 @@
+From 0fb39f91df94ac144f7364259225214d773e1b7f Mon Sep 17 00:00:00 2001
+From: Reginald Kennedy <rk@rejii.com>
+Date: Thu, 5 May 2016 00:59:14 +0800
+Subject: [PATCH 4/4] Redraw the focus window frame when changing regions with
+ the pointer.
+
+fixes #126
+---
+ spectrwm.c | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/spectrwm.c b/spectrwm.c
+index e566741..f68e08b 100644
+--- a/spectrwm.c
++++ b/spectrwm.c
+@@ -4144,6 +4144,10 @@ set_region(struct swm_region *r)
+ 
+ 	r->s->r_focus = r;
+ 
++	/* Update the focus window frame on the now unfocused region. */
++	if (rf && rf->ws->focus)
++		draw_frame(rf->ws->focus);
++
+ 	ewmh_update_current_desktop();
+ }
+ 
+-- 
+2.8.1
+
